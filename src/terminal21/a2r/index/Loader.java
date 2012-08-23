@@ -56,7 +56,7 @@ public class Loader extends Observable implements Runnable {
 		System.setProperty("http.keepAlive", "false");
 			
 		try {
-			url = new URL("http", this.index_server.toString(), 7000, "/show.json") ;
+			url = new URL("http", this.index_server.toString(), 7000, "/") ;
 		} catch (MalformedURLException e) {
 			error(e) ;
 			return json ;
@@ -64,6 +64,7 @@ public class Loader extends Observable implements Runnable {
 		
 		try {
 			con = (HttpURLConnection)url.openConnection() ;
+			con.setRequestProperty("Accept", "application/json") ;
 		} catch (IOException e) {
 			error(e) ;
 			return json ;
@@ -103,8 +104,6 @@ public class Loader extends Observable implements Runnable {
 				
 				for (int j=0; j<jSensors.length(); j++) {
 					jSensor = jSensors.getJSONObject(j) ;
-					int qp = jSensor.getInt("query_port") ;
-					int tp = jSensor.getInt("target_port") ;
 					sensor = new Sensor(jSensor.getString("name"), jSensor.getInt("type"), jSensor.getInt("target_port"), jSensor.getInt("query_port")) ;
 					session.addSensor(sensor) ;
 				}	
