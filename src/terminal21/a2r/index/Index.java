@@ -6,6 +6,8 @@ import java.util.Vector ;
 public class Index {
 	private static Index instance = new Index() ;
 	private Vector<Session> sessions ;
+	private Session currentSession ;
+	private Sensor currentSensor ;
 	
 	private Index() {
 		this.sessions = new Vector<Session>() ;
@@ -21,6 +23,22 @@ public class Index {
 	
 	public void addSession(Session ses) {
 		this.sessions.add(ses) ;
+	}
+	
+	public Session getCurrentSession() {
+		return this.currentSession ;
+	}
+	
+	public void setCurrentSession(Session session) {
+		this.currentSession = session ;
+	}
+	
+	public Sensor getCurrentSensor() {
+		return this.currentSensor ;
+	}
+	
+	public void setCurrentSensor(Sensor sensor) {
+		this.currentSensor = sensor ;
 	}
 	
 	public void clear() {

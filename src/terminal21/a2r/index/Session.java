@@ -8,6 +8,7 @@ public class Session {
 	
 	public Session(CharSequence title) {
 		this.title = title ;
+		this.sensors = new Vector<Sensor>() ;
 	}
 	
 	public CharSequence getTitle() {
@@ -20,5 +21,9 @@ public class Session {
 	
 	public Vector<Sensor> getSensors() {
 		return this.sensors ;
+	}
+	
+	public boolean hasSensors() {
+		return !sensors.isEmpty() ;
 	}
 }

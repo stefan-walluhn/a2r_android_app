@@ -26,7 +26,7 @@ public class Sensor {
 		this.name = name ;
 		this.type = type ;
 		this.target_port = target_port ;
-		this.query_port = target_port ;
+		this.query_port = query_port ;
 	}
 	
 	public CharSequence getName() {

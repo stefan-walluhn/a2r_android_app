@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SessionListActivity"></activity>
+        <activity android:name=".SensorListActivity"></activity>
     </application>
 
 </manifest>

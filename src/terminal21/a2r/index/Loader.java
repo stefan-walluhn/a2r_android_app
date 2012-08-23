@@ -88,15 +88,28 @@ public class Loader extends Observable implements Runnable {
 		
 		this.index.clear() ;
 		
-		Session s ;
-		
 		try {
-			JSONArray jarray = new JSONArray(json) ;
+			JSONArray jSessions = new JSONArray(json) ;
+			JSONArray jSensors ;
+			JSONObject jSession ;
+			JSONObject jSensor ;
+			Session session ;
+			Sensor sensor ;
 			
-			for (int i=0; i<jarray.length(); i++) {
-				JSONObject jobject = jarray.getJSONObject(i) ;
-				s = new Session(jobject.getString("title")) ;
-				this.index.addSession(s) ;
+			for (int i=0; i<jSessions.length(); i++) {
+				jSession = jSessions.getJSONObject(i) ;
+				session = new Session(jSession.getString("title")) ;
+				jSensors = jSession.getJSONArray("sensors") ;
+				
+				for (int j=0; j<jSensors.length(); j++) {
+					jSensor = jSensors.getJSONObject(j) ;
+					int qp = jSensor.getInt("query_port") ;
+					int tp = jSensor.getInt("target_port") ;
+					sensor = new Sensor(jSensor.getString("name"), jSensor.getInt("type"), jSensor.getInt("target_port"), jSensor.getInt("query_port")) ;
+					session.addSensor(sensor) ;
+				}	
+				
+				this.index.addSession(session) ;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
