@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import terminal21.a2r.index.Session;
-import terminal21.a2r.index.SessionList;
+import terminal21.a2r.index.Index;
 
 public class SessionListActivity extends Activity {
 	
@@ -24,12 +24,12 @@ public class SessionListActivity extends Activity {
 		Session ses = null ;
 		Button b = null ;
 		//Vector<Session> sessions = SessionList.getInstance().sessions ;
-		Iterator<Session> sitr = SessionList.getInstance().sessions.iterator() ;
+		Iterator<Session> sitr = Index.getInstance().getSessions().iterator() ;
 		
 		while (sitr.hasNext()) {
 			ses = sitr.next() ;
 			b = new Button(this) ;
-			b.setText(ses.getName()) ;
+			b.setText(ses.getTitle()) ;
 			listLayout.addView(b, new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT)) ;
 		}
 	}

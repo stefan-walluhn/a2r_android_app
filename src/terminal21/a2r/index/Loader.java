@@ -9,6 +9,9 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import org.json.JSONArray ;
+import org.json.JSONObject ;
+
 import android.util.Log;
 
 public class Loader extends Observable implements Runnable {
@@ -20,7 +23,7 @@ public class Loader extends Observable implements Runnable {
 	public static Integer DONE = 10 ;
 	
 	private CharSequence index_server = "index.addicted2random.eu" ;
-	private SessionList sessions = SessionList.getInstance() ;
+	private Index index = Index.getInstance() ;
 	
 	public Loader() {
 	}
@@ -83,13 +86,21 @@ public class Loader extends Observable implements Runnable {
 		setChanged() ;
 		notifyObservers(Loader.PARSE) ;
 		
-		this.sessions.clear() ;
+		this.index.clear() ;
 		
 		Session s ;
-		s = new Session("Hallo") ;
-		this.sessions.add(s) ;
-		s = new Session("Welt") ;
-		this.sessions.add(s) ;
+		
+		try {
+			JSONArray jarray = new JSONArray(json) ;
+			
+			for (int i=0; i<jarray.length(); i++) {
+				JSONObject jobject = jarray.getJSONObject(i) ;
+				s = new Session(jobject.getString("title")) ;
+				this.index.addSession(s) ;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void done() {
