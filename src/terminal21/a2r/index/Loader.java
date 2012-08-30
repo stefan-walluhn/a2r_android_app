@@ -104,7 +104,10 @@ public class Loader extends Observable implements Runnable {
 				
 				for (int j=0; j<jSensors.length(); j++) {
 					jSensor = jSensors.getJSONObject(j) ;
-					sensor = new Sensor(jSensor.getString("name"), jSensor.getInt("type"), jSensor.getInt("target_port"), jSensor.getInt("query_port")) ;
+					
+					sensor = new Sensor(jSensor.getString("name"), jSensor.getString("type")) ;
+					if (jSensor.has("target_port")) sensor.setTargetPort(jSensor.getInt("target_port")) ;
+					if (jSensor.has("query_port")) sensor.setQueryPort(jSensor.getInt("query_port")) ;
 					session.addSensor(sensor) ;
 				}	
 				
