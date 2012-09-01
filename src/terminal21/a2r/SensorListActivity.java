@@ -5,7 +5,10 @@ import java.util.Iterator ;
 
 import terminal21.a2r.R;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener ;
 import android.view.ViewGroup.LayoutParams ;
 import android.widget.LinearLayout;
 import android.widget.Button ;
@@ -13,7 +16,7 @@ import android.widget.Button ;
 import terminal21.a2r.index.Sensor;
 import terminal21.a2r.index.Index;
 
-public class SensorListActivity extends Activity {
+public class SensorListActivity extends Activity implements OnClickListener {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,13 @@ public class SensorListActivity extends Activity {
 			sensor = sitr.next() ;
 			b = new Button(this) ;
 			b.setText(sensor.getName()) ;
+			b.setOnClickListener(this) ;
 			listLayout.addView(b, new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT)) ;
 		}
+	}
+	
+	public void onClick(View view) {
+		Intent i = new Intent(view.getContext(), PadActivity.class);
+		startActivity(i);
 	}
 }

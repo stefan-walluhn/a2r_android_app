@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".SessionListActivity"></activity>
         <activity android:name=".SensorListActivity"></activity>
+        <activity android:name=".PadActivity"></activity>
     </application>
 
 </manifest>
