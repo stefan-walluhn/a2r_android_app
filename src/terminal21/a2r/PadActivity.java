@@ -1,10 +1,8 @@
 package terminal21.a2r;
 
-import java.net.InetAddress ;
 import java.net.DatagramSocket ;
 import java.net.DatagramPacket ;
 import java.io.IOException ;
-import java.net.UnknownHostException ;
 import java.net.SocketException ;
 
 import terminal21.a2r.R;
@@ -16,24 +14,30 @@ import android.view.MotionEvent ;
 import android.widget.LinearLayout ;
 import android.widget.TextView ;
 
+import terminal21.a2r.index.Index ;
+import terminal21.a2r.index.Session ;
+import terminal21.a2r.index.Sensor ;
+import terminal21.a2r.transmitter.Entity;
+import terminal21.a2r.transmitter.Transmitter ;
+
 public class PadActivity extends Activity implements OnTouchListener {
 	
 	private TextView coordinates ;
-	private DatagramSocket socket ;
+
+	private Transmitter transmitter ;
+	
+	private Session session ;
+	private Sensor sensor ;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState) ;
 		setContentView(R.layout.pad);
 		
-		try {
-			this.socket = new DatagramSocket() ;
-			this.socket.connect(InetAddress.getByName("172.26.0.171"), 7069) ;	// ToDo: fetch this from index
-		} catch(SocketException e) {
-			// ToDo: message bad socket
-		} catch (UnknownHostException e) {
-			// ToDo: message unknown host
-		}
+		this.session = Index.getInstance().getCurrentSession() ;
+		this.sensor = Index.getInstance().getCurrentSensor() ;
+		
+		this.transmitter = new Transmitter(this.session.getProxy(), this.sensor.getTargetPort()) ;
 		
 		this.coordinates = (TextView)findViewById(R.id.coordinates) ;
 		LinearLayout layout = (LinearLayout)findViewById(R.id.padLayout) ;
@@ -43,21 +47,12 @@ public class PadActivity extends Activity implements OnTouchListener {
 	public boolean onTouch(View view, MotionEvent event) {
 		this.coordinates.setText(Float.toString(event.getX()) + ":" + Float.toString(event.getY())) ;
 		
-		if (this.socket.isConnected()) {
-			byte data[] = new byte[4] ;
-			data[0] = (byte)0x81 ;
-			data[1] = (byte)(short)event.getX() ;
-			data[2] = (byte)((short)(event.getX())>>8) ;
-			data[3] = (byte)(data[0] ^ data[1] ^ data[2]) ;
-			
-			DatagramPacket pack = new DatagramPacket(data, 4) ;
-			try {
-				this.socket.send(pack) ;
-			}
-			catch (IOException e) {
-				// ToDo: catch exception
-			}
-		}
+		Entity entities[] = new Entity[2] ;
+		entities[0] = new Entity(Entity.X, (short)(event.getX() * 65536 / view.getWidth())) ;
+		entities[1] = new Entity(Entity.Y, (short)(event.getY() * 65536 / view.getHeight())) ;
+		
+		this.transmitter.emit(entities) ;
+		
 		return true ;
 	}
 }

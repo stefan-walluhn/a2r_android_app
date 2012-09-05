@@ -1,6 +1,7 @@
 package terminal21.a2r.index;
 
 import java.util.Observable;
+import java.net.InetAddress;
 import java.net.URL;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -99,14 +100,14 @@ public class Loader extends Observable implements Runnable {
 			
 			for (int i=0; i<jSessions.length(); i++) {
 				jSession = jSessions.getJSONObject(i) ;
-				session = new Session(jSession.getString("title")) ;
+				session = new Session(jSession.getString("title"), InetAddress.getByName(jSession.getString("proxy"))) ;
 				jSensors = jSession.getJSONArray("sensors") ;
 				
 				for (int j=0; j<jSensors.length(); j++) {
 					jSensor = jSensors.getJSONObject(j) ;
 					
 					sensor = new Sensor(jSensor.getString("name"), jSensor.getString("type")) ;
-					if (jSensor.has("target_port")) sensor.setTargetPort(jSensor.getInt("target_port")) ;
+					if (jSensor.has("port")) sensor.setTargetPort(jSensor.getInt("port")) ;
 					if (jSensor.has("query_port")) sensor.setQueryPort(jSensor.getInt("query_port")) ;
 					session.addSensor(sensor) ;
 				}	

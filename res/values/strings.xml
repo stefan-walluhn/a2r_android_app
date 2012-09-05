@@ -5,7 +5,7 @@
     <string name="app_name">A2R</string>
     <string name="a2r">Addicted2Random</string>
     <string name="fetch_a2r_index">fetch sessions</string>
-    <string name="a2r_index_server">172.26.0.171</string>
+    <string name="a2r_index_server">192.168.121.235</string>
     
     <string name="index_init">initialize</string>
     <string name="index_fetch">download sessions</string>
