@@ -13,15 +13,13 @@ import java.io.IOException;
 import org.json.JSONArray ;
 import org.json.JSONObject ;
 
-import android.util.Log;
-
 public class Loader extends Observable implements Runnable {
 	
-	public static Integer ERROR = -1 ;
-	public static Integer INIT = 0 ;
-	public static Integer FETCH = 1 ;
-	public static Integer PARSE = 2 ;
-	public static Integer DONE = 10 ;
+	public static final Integer ERROR = -1 ;
+	public static final Integer INIT = 0 ;
+	public static final Integer FETCH = 1 ;
+	public static final Integer PARSE = 2 ;
+	public static final Integer DONE = 10 ;
 	
 	private CharSequence index_server = "index.addicted2random.eu" ;
 	private Index index = Index.getInstance() ;
@@ -140,7 +138,6 @@ public class Loader extends Observable implements Runnable {
 	}
 
 	private void error(Exception e) {
-		Log.e("A2R Index Loader", e.toString()) ;
 		setChanged() ;
 		notifyObservers(Loader.ERROR) ;
 	}

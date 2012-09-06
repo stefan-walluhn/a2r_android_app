@@ -4,6 +4,9 @@
     <string name="hello">Hello World!</string>
     <string name="app_name">A2R</string>
     <string name="a2r">Addicted2Random</string>
+    
+    <string name="no_net">This App needs internet access, but internet of your device is not accessable.</string>
+    
     <string name="fetch_a2r_index">fetch sessions</string>
     <string name="a2r_index_server">192.168.121.235</string>
     

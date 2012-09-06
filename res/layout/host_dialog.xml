@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/background" >
+    android:padding="10dip" >
 
-    <TextView
-        android:id="@+id/textView1"
+    <EditText
+        android:id="@+id/a2rIndexServer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/a2r"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:ems="10"
+        android:inputType="textUri|textNoSuggestions"
+        android:singleLine="true"
+        android:text="@string/a2r_index_server" />
 
-    <TextView
+    <Button
+        android:id="@+id/fetchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="50dip"
-        android:text="@string/hello" />
-
+        android:onClick="fetchIndex"
+        android:text="@string/fetch_a2r_index" />
+   
 </LinearLayout>

@@ -1,0 +1,5 @@
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/a2r"
+    android:dither="true"
+    android:gravity="center"
+    android:tileMode="disabled" />
