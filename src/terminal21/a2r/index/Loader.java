@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import org.json.JSONArray ;
 import org.json.JSONObject ;
+import org.json.JSONException ;
 
 public class Loader extends Observable implements Runnable {
 	
@@ -97,22 +98,29 @@ public class Loader extends Observable implements Runnable {
 			Sensor sensor ;
 			
 			for (int i=0; i<jSessions.length(); i++) {
-				jSession = jSessions.getJSONObject(i) ;
-				session = new Session(jSession.getString("title"), InetAddress.getByName(jSession.getString("proxy"))) ;
-				jSensors = jSession.getJSONArray("sensors") ;
-				
-				for (int j=0; j<jSensors.length(); j++) {
-					jSensor = jSensors.getJSONObject(j) ;
+				try {
+					jSession = jSessions.getJSONObject(i) ;
+					session = new Session(jSession.getString("title"), InetAddress.getByName(jSession.getString("proxy"))) ;
+					jSensors = jSession.getJSONArray("sensors") ;
 					
-					sensor = new Sensor(jSensor.getString("name"), jSensor.getString("type")) ;
-					if (jSensor.has("port")) sensor.setTargetPort(jSensor.getInt("port")) ;
-					if (jSensor.has("query_port")) sensor.setQueryPort(jSensor.getInt("query_port")) ;
-					session.addSensor(sensor) ;
-				}	
-				
-				this.index.addSession(session) ;
+					for (int j=0; j<jSensors.length(); j++) {
+						jSensor = jSensors.getJSONObject(j) ;
+						
+						sensor = new Sensor(jSensor.getString("name"), jSensor.getString("type")) ;
+						if (jSensor.has("port")) sensor.setTargetPort(jSensor.getInt("port")) ;
+						if (jSensor.has("query_port")) sensor.setQueryPort(jSensor.getInt("query_port")) ;
+						session.addSensor(sensor) ;
+					}	
+					
+					this.index.addSession(session) ;
+	
+				} catch (JSONException e) {
+					continue ;
+				}
 			}
 		} catch (Exception e) {
+			setChanged() ;
+			notifyObservers(Loader.ERROR) ;
 			e.printStackTrace();
 		}
 	}
