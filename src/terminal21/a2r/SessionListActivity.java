@@ -31,14 +31,14 @@ public class SessionListActivity extends Activity implements OnClickListener {
 		while (sitr.hasNext()) {
 			ses = sitr.next() ;
 			b = new SessionButton(this, ses) ;
-			if (b.getSession().hasSensors()) b.setOnClickListener(this) ;
+			b.setOnClickListener(this) ;
 			listLayout.addView(b, new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT)) ;
 		}
 	}
 
 	public void onClick(View view) {
 		Index.getInstance().setCurrentSession(((SessionButton) view).getSession()) ;
-		Intent i = new Intent(view.getContext(), SensorListActivity.class);
+		Intent i = new Intent(view.getContext(), SliderActivity.class);
 		startActivity(i);
 	}
 }

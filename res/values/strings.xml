@@ -8,7 +8,7 @@
     <string name="no_net">This App needs internet access, but internet of your device is not accessable.</string>
     
     <string name="fetch_a2r_index">fetch sessions</string>
-    <string name="a2r_index_server">192.168.23.146</string>
+    <string name="a2r_index_server">172.26.0.182</string>
     
     <string name="index_init">initialize</string>
     <string name="index_fetch">download sessions</string>

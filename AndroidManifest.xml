@@ -7,6 +7,7 @@
     <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="9"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -24,6 +25,7 @@
         <activity android:name=".SessionListActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity android:name=".SensorListActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity android:name=".PadActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+        <activity android:name=".SliderActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
     </application>
 
 </manifest>

@@ -47,11 +47,10 @@ public class PadActivity extends Activity implements OnTouchListener {
 	public boolean onTouch(View view, MotionEvent event) {
 		this.coordinates.setText(Float.toString(event.getX()) + ":" + Float.toString(event.getY())) ;
 		
-		Entity entities[] = new Entity[2] ;
-		entities[0] = new Entity(Entity.X, (short)(event.getX() * 65536 / view.getWidth())) ;
-		entities[1] = new Entity(Entity.Y, (short)(event.getY() * 65536 / view.getHeight())) ;
+		transmitter.addEntity(new Entity(Entity.X, (short)(event.getX() * 65536 / view.getWidth()))) ;
+		transmitter.addEntity(new Entity(Entity.Y, (short)(event.getY() * 65536 / view.getHeight()))) ;
 		
-		this.transmitter.emit(entities) ;
+		this.transmitter.emit() ;
 		
 		return true ;
 	}

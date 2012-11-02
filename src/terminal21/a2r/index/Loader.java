@@ -100,20 +100,8 @@ public class Loader extends Observable implements Runnable {
 			for (int i=0; i<jSessions.length(); i++) {
 				try {
 					jSession = jSessions.getJSONObject(i) ;
-					session = new Session(jSession.getString("title"), InetAddress.getByName(jSession.getString("proxy"))) ;
-					jSensors = jSession.getJSONArray("sensors") ;
-					
-					for (int j=0; j<jSensors.length(); j++) {
-						jSensor = jSensors.getJSONObject(j) ;
-						
-						sensor = new Sensor(jSensor.getString("name"), jSensor.getString("type")) ;
-						if (jSensor.has("port")) sensor.setTargetPort(jSensor.getInt("port")) ;
-						if (jSensor.has("query_port")) sensor.setQueryPort(jSensor.getInt("query_port")) ;
-						session.addSensor(sensor) ;
-					}	
-					
+					session = new Session(jSession.getString("title"), InetAddress.getByName(jSession.getString("proxy")), jSession.getInt("port")) ;
 					this.index.addSession(session) ;
-	
 				} catch (JSONException e) {
 					continue ;
 				}

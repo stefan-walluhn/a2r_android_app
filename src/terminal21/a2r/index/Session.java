@@ -6,11 +6,13 @@ import java.net.InetAddress ;
 public class Session {
 	private CharSequence title ;
 	private InetAddress proxy ;
+	private Integer port ;
 	private Vector<Sensor> sensors ;
 	
-	public Session(CharSequence title, InetAddress proxy) {
+	public Session(CharSequence title, InetAddress proxy, Integer port) {
 		this.title = title ;
 		this.proxy = proxy ;
+		this.port = port ;
 		this.sensors = new Vector<Sensor>() ;
 	}
 	
@@ -20,6 +22,10 @@ public class Session {
 	
 	public InetAddress getProxy() {
 		return this.proxy ;
+	}
+	
+	public Integer getPort() {
+		return this.port ;
 	}
 	
 	public void addSensor(Sensor sensor) {
