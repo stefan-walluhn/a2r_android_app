@@ -5,15 +5,21 @@ public class Entity {
 	private short value ;
 	private Crc8 crc8 ;
 	
-	public final static byte X = (byte)0X81 ;
-	public final static byte Y = (byte)0X82 ;
+	public final static byte A = (byte)0X81 ;
+	public final static byte B = (byte)0X82 ;
+	public final static byte C = (byte)0X83 ;
+	public final static byte D = (byte)0X84 ;
+	public final static byte E = (byte)0X85 ;
+	public final static byte F = (byte)0X86 ;
 	public final static byte ACCEL_X = (byte)0X90 ;
 	public final static byte ACCEL_Y = (byte)0X91 ;
 	public final static byte ACCEL_Z = (byte)0X92 ;
-	public final static byte GYR_X = (byte)0XA0 ;
-	public final static byte GYR_Y = (byte)0XA1 ;
-	public final static byte GYR_Z = (byte)0XA2 ;
-	
+	public final static byte GYRO_X = (byte)0XA0 ;
+	public final static byte GYRO_Y = (byte)0XA1 ;
+	public final static byte GYRO_Z = (byte)0XA2 ;
+	public final static byte TEMP = (byte)0XB0 ;
+	public final static byte LIGHT = (byte)0XB2 ;
+		
 	public Entity(byte type, short value) {
 		this.type = type ;
 		this.value = value ;

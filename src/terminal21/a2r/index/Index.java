@@ -1,23 +1,23 @@
 package terminal21.a2r.index;
 
-import java.util.Vector ;
+import java.util.ArrayList;
 
 // singleton a la http://www.theserverside.de/singleton-pattern-in-java/
 public class Index {
 	private static Index instance = new Index() ;
-	private Vector<Session> sessions ;
+	private ArrayList<Session> sessions ;
 	private Session currentSession ;
 	private Sensor currentSensor ;
 	
 	private Index() {
-		this.sessions = new Vector<Session>() ;
+		this.sessions = new ArrayList<Session>() ;
 	}
 	
 	public static Index getInstance() {
 		return instance ;
 	}
 	
-	public Vector<Session> getSessions() {
+	public ArrayList<Session> getSessions() {
 		return this.sessions ;
 	}
 	

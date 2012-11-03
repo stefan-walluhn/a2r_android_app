@@ -3,38 +3,44 @@
     android:id="@+id/sliderLayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:gravity="top"
+    android:gravity="center"
     android:orientation="vertical" >
 
     <SeekBar
         android:id="@+id/seekBar1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="20dp" />
     
     <SeekBar
         android:id="@+id/seekBar2"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="20dp" />
     
     <SeekBar
         android:id="@+id/seekBar3"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="20dp" />
     
     <SeekBar
         android:id="@+id/seekBar4"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="20dp" />
 
     <SeekBar
         android:id="@+id/seekBar5"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="20dp" />
 
     <SeekBar
         android:id="@+id/seekBar6"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="20dp" />
 
  
 </LinearLayout>

@@ -1,10 +1,5 @@
 package terminal21.a2r;
 
-import java.net.DatagramSocket ;
-import java.net.DatagramPacket ;
-import java.io.IOException ;
-import java.net.SocketException ;
-
 import terminal21.a2r.R;
 import android.os.Bundle;
 import android.app.Activity;
@@ -37,7 +32,8 @@ public class PadActivity extends Activity implements OnTouchListener {
 		this.session = Index.getInstance().getCurrentSession() ;
 		this.sensor = Index.getInstance().getCurrentSensor() ;
 		
-		this.transmitter = new Transmitter(this.session.getProxy(), this.sensor.getTargetPort()) ;
+		this.transmitter = Transmitter.getInstance() ;
+		this.transmitter.connect(this.session.getProxy(), this.sensor.getTargetPort()) ;
 		
 		this.coordinates = (TextView)findViewById(R.id.coordinates) ;
 		LinearLayout layout = (LinearLayout)findViewById(R.id.padLayout) ;
@@ -47,8 +43,8 @@ public class PadActivity extends Activity implements OnTouchListener {
 	public boolean onTouch(View view, MotionEvent event) {
 		this.coordinates.setText(Float.toString(event.getX()) + ":" + Float.toString(event.getY())) ;
 		
-		transmitter.addEntity(new Entity(Entity.X, (short)(event.getX() * 65536 / view.getWidth()))) ;
-		transmitter.addEntity(new Entity(Entity.Y, (short)(event.getY() * 65536 / view.getHeight()))) ;
+		transmitter.addEntity(new Entity(Entity.A, (short)(event.getX() * 65536 / view.getWidth()))) ;
+		transmitter.addEntity(new Entity(Entity.B, (short)(event.getY() * 65536 / view.getHeight()))) ;
 		
 		this.transmitter.emit() ;
 		
