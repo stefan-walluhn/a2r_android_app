@@ -26,13 +26,14 @@ public class SliderBox implements OnSeekBarChangeListener {
 		
 		String bar = seekBar.getResources().getResourceEntryName(seekBar.getId()) ;
 		Entity entity = null ;
+		int max = seekBar.getMax() ;
 		
-		if (bar.contentEquals("seekBar1")) entity = new Entity(Entity.A, (short)progress) ;
-		if (bar.contentEquals("seekBar2")) entity = new Entity(Entity.B, (short)progress) ;
-		if (bar.contentEquals("seekBar3")) entity = new Entity(Entity.C, (short)progress) ;
-		if (bar.contentEquals("seekBar4")) entity = new Entity(Entity.D, (short)progress) ;
-		if (bar.contentEquals("seekBar5")) entity = new Entity(Entity.E, (short)progress) ;
-		if (bar.contentEquals("seekBar6")) entity = new Entity(Entity.F, (short)progress) ;
+		if (bar.contentEquals("seekBar1")) entity = new Entity(Entity.A, (short)(progress * 256 / max)) ;
+		if (bar.contentEquals("seekBar2")) entity = new Entity(Entity.B, (short)(progress * 256 / max)) ;
+		if (bar.contentEquals("seekBar3")) entity = new Entity(Entity.C, (short)(progress * 256 / max)) ;
+		if (bar.contentEquals("seekBar4")) entity = new Entity(Entity.D, (short)(progress * 256 / max)) ;
+		if (bar.contentEquals("seekBar5")) entity = new Entity(Entity.E, (short)(progress * 256 / max)) ;
+		if (bar.contentEquals("seekBar6")) entity = new Entity(Entity.F, (short)(progress * 256 / max)) ;
 		
 		if (entity != null) {
 			this.transmitter.addEntity(entity) ;

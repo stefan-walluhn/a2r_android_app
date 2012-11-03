@@ -75,7 +75,7 @@ public class SensorBox implements SensorEventListener {
 		}
 		
 		if (event.sensor == this.lightSensor) {
-			this.transmitter.addEntity(new Entity(Entity.LIGHT, (short)(event.values[0]))) ;
+			this.transmitter.addEntity(new Entity(Entity.LIGHT, (short)(event.values[0] * 32768 / max))) ;
 		}
 		//this.context.transmitter.emit() ;
 	}
