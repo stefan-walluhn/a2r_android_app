@@ -7,7 +7,6 @@ public class Index {
 	private static Index instance = new Index() ;
 	private ArrayList<Session> sessions ;
 	private Session currentSession ;
-	private Sensor currentSensor ;
 	
 	private Index() {
 		this.sessions = new ArrayList<Session>() ;
@@ -32,15 +31,7 @@ public class Index {
 	public void setCurrentSession(Session session) {
 		this.currentSession = session ;
 	}
-	
-	public Sensor getCurrentSensor() {
-		return this.currentSensor ;
-	}
-	
-	public void setCurrentSensor(Sensor sensor) {
-		this.currentSensor = sensor ;
-	}
-	
+		
 	public void clear() {
 		this.sessions.clear() ;
 		

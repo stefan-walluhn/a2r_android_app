@@ -91,11 +91,8 @@ public class Loader extends Observable implements Runnable {
 		
 		try {
 			JSONArray jSessions = new JSONArray(json) ;
-			JSONArray jSensors ;
 			JSONObject jSession ;
-			JSONObject jSensor ;
 			Session session ;
-			Sensor sensor ;
 			
 			for (int i=0; i<jSessions.length(); i++) {
 				try {

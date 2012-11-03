@@ -24,7 +24,6 @@
         </activity>
         <activity android:name=".SessionListActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity android:name=".SensorListActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
-        <activity android:name=".PadActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <activity android:name=".SliderActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
     </application>
 

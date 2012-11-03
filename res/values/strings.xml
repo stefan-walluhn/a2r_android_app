@@ -17,6 +17,4 @@
     <string name="index_error">an error occured</string>
     
     <string name="session_list_description">These are the currently running A2R sessions. Chose one to take part.</string>
-    
-    <string name="sensor_list_description">These are the available sensors. Chose one to take part.</string>
 </resources>
